@@ -1,0 +1,121 @@
+#
+# HWUI_BUILD_PROPERTIES
+#
+ro.hwui.texture_cache_size=24
+ro.hwui.layer_cache_size=16
+ro.hwui.path_cache_size=4
+ro.hwui.shape_cache_size=1
+ro.hwui.gradient_cache_size=0.5
+ro.hwui.drop_shadow_cache_size=2
+ro.hwui.r_buffer_cache_size=2
+ro.hwui.text_small_cache_width=1024
+ro.hwui.text_small_cache_height=512
+ro.hwui.text_large_cache_width=2048
+ro.hwui.text_large_cache_height=1024
+ro.hwui.fbo_cache_size=8
+#
+# set lcd density
+ro.sf.lcd_density=240
+
+ro.arch=exynos3475
+ro.kernel.qemu=0
+ro.kernel.qemu.gles=1
+persist.hdmi.hdcp_enabled=1
+
+
+# SAMP_SPCM
+sys.config.samp_spcm_enable=true
+sys.config.spcm_db_enable=true
+sys.config.spcm_db_launcher=true
+sys.config.spcm_preload_enable=true
+sys.config.spcm_kill_skip=true
+
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.astcenc.astcsupport=1 \
+ro.mct.compressiontype=ASTC \
+ro.config.tima=1 \
+ro.config.timaversion=3.0 \
+ro.config.dmverity=true \
+ro.config.kap=true \
+ro.telephony.default_network=9 \
+dalvik.vm.image-dex2oat-filter=speed \
+dalvik.vm.dex2oat-filter=speed \
+dalvik.vm.heapstartsize=8m \
+dalvik.vm.heapgrowthlimit=96m \
+dalvik.vm.heapsize=256m \
+dalvik.vm.heaptargetutilization=0.75 \
+dalvik.vm.heapminfree=2m \
+dalvik.vm.heapmaxfree=8m \
+ro.opengles.version=196608 \
+ro.sf.lcd_density=270 \
+debug.hwui.render_dirty_regions=false \
+ro.securestorage.support=true \
+ro.build.scafe=capuccino \
+ro.build.scafe.size=short \
+ro.build.scafe.cream=white \
+ro.build.scafe.shot=single \
+security.mdpp.mass=skmm \
+ro.security.vpnpp.release=5.3 \
+ro.sec.fle.encryption=true \
+ro.config.low_ram=true \
+ro.config.dha_cached_min=3 \
+ro.config.dha_cached_max=4 \
+ro.config.dha_empty_min=6 \
+ro.config.dha_empty_max=16 \
+ro.config.dha_empty_init=16 \
+ro.config.dha_th_rate=1.8 \
+ro.config.dha_lmk_scale=1.0 \
+ro.config.ldha_es_enable=true \
+ro.config.mdha_ssr_enable=true \
+ro.config.dha_pwhitelist_enable=1 \
+ro.error.receiver.default=com.samsung.receiver.error \
+ro.frp.pst=/dev/block/persistent \
+keyguard.no_require_sim=true \
+ro.com.android.dateformat=MM-dd-yyyy \
+ro.carrier=unknown \
+ro.com.google.clientidbase=android-samsung \
+ro.security.icd.flagmode=multi \
+security.ASKS.policy_version=000000 \
+ro.ril.hsxpa=1 \
+ro.ril.gprsclass=10 \
+ro.adb.qemud=1 \
+ro.setupwizard.mode=OPTIONAL \
+persist.sys.dalvik.vm.lib.2=libart.so \
+ro.build.selinux=1 \
+dalvik.vm.isa.arm.features=div \
+ro.kernel.qemu=0 \
+dalvik.vm.dexopt-flags=m=y \
+net.bt.name=Android \
+dalvik.vm.stack-trace-file=/data/anr/traces.txt \
+ro.build.aapt.config.prefer=hdpi \
+ro.build.version.sdl=2203
+
+# Audio
+PRODUCT_PROPERTY_OVERRIDES += \
+    af.fast_track_multiplier=1 \
+    audio_hal.force_voice_config=wide
+
+# Graphics
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version=196609 \
+    debug.hwc.force_gpu=1
+
+# Hwui
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hwui.texture_cache_size=24 \
+    ro.hwui.layer_cache_size=16 \
+    ro.hwui.path_cache_size=4 \
+    ro.hwui.texture_cache_flushrate=0.4 \
+    ro.hwui.shape_cache_size=1 \
+    ro.hwui.gradient_cache_size=0.5 \
+    ro.hwui.drop_shadow_cache_size=2 \
+    ro.hwui.r_buffer_cache_size=2 \
+    ro.hwui.text_small_cache_width=1024 \
+    ro.hwui.text_small_cache_height=512 \
+    ro.hwui.text_large_cache_width=2048 \
+    ro.hwui.text_large_cache_height=1024 \
+
+# Wifi
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.interface=wlan0
+
