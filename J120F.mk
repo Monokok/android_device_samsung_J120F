@@ -18,9 +18,6 @@ LOCAL_PATH := device/samsung/J120F
 DEVICE_PACKAGE_OVERLAYS += device/samsung/J120F/overlay
 TARGET_BOOTANIMATION_HALF_RES := true
 
-LOCAL_PATH := device/samsung/J120F
-
-
 TARGET_SCREEN_WIDTH := 480
 TARGET_SCREEN_HEIGHT := 800
 
@@ -40,7 +37,7 @@ PRODUCT_COPY_FILES += \
 # Packages
 # Audio.
 PRODUCT_PACKAGES += \
-    $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf
+    $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
     audio.a2dp.default \
     audio.r_submix.default \
     audio.primary.default \
@@ -62,10 +59,9 @@ PRODUCT_PACKAGES += \
     static_busybox \
     make_ext4fs \
     setup_fs
-# telephony. Просто оставляем.
+# telephony. Просто оставляем.# Other
 PRODUCT_PACKAGES += \
-    CMSettingsProvider
-# Other
+    CMSettingsProvider \
     libkeyutils \
     libexifa \
     libjpega \
@@ -113,13 +109,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.text_small_cache_width=1024 \
     ro.hwui.text_small_cache_height=512 \
     ro.hwui.text_large_cache_width=2048 \
-    ro.hwui.text_large_cache_height=1024 \
+    ro.hwui.text_large_cache_height=1024
 
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=3
@@ -185,9 +182,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
 
-$(call inherit-product-if-exists, vendor/samsung/vendor.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-
 PRODUCT_NAME := SM
 PRODUCT_DEVICE := J120F
 PRODUCT_BRAND := samsung
@@ -199,7 +193,26 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/sec_touchkey.kl:/system/usr/keylayout/sec_touchkey.kl \
     $(LOCAL_PATH)/configs/keylayout/gpio-keys.kl:/system/usr/keylayout/gpio-keys.kl
 
+PRODUCT_MAKEFILES := \
+    $(LOCAL_DIR)/J120F.mk \
+    $(LOCAL_DIR)/Android.mk \
+    $(LOCAL_DIR)/AndroidProducts.mk \
+    $(LOCAL_DIR)/BoardConfig.mk \
+    $(LOCAL_DIR)/cm.mk \
+    $(LOCAL_DIR)/full_J120F.mk
+
+
+$(call inherit-product-if-exists, vendor/samsung/vendor.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Off ninja
 USE_NINJA=false
 
 -include $(LOCAL_PATH)/system.prop
+
+PRODUCT_MAKEFILES := \
+    $(LOCAL_DIR)/J120F.mk \
+    $(LOCAL_DIR)/Android.mk \
+    $(LOCAL_DIR)/AndroidProducts.mk \
+    $(LOCAL_DIR)/BoardConfig.mk \
+    $(LOCAL_DIR)/cm.mk \
+    $(LOCAL_DIR)/full_J120F.mk

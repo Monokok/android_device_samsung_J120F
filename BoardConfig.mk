@@ -15,13 +15,17 @@
 
 LOCAL_PATH := device/samsung/J120F
 
+# Include path
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+
 # Platform
-TARGET_BOARD_PLATFORM := exynos3
+TARGET_BOARD_PLATFORM += exynos3
 TARGET_BOARD_PLATFORM_GPU := mali-T720
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a7 -mfpu=neon
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a7 -mfpu=neon
 BOARD_VENDOR := samsung
 TARGET_SOC := exynos3475
+TARGET_SLSI_VARIANT := cm
 
 # Bionic
 MALLOC_SVELTE := true
@@ -54,8 +58,6 @@ BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 TARGET_NO_KERNEL := true
 USES_UNCOMPRESSED_KERNEL := true
-TARGET_KERNEL_SOURCE := kernel/samsung/J120F
-TARGET_KERNEL_CONFIG := j1xlte_02_defconfig
 
 # Partitions
 BOARD_CACHE_DEVICE := mmcblk0p21
@@ -194,9 +196,13 @@ TARGET_NEEDS_LEGACY_CAMERA_HAL1_DYN_NATIVE_HANDLE := true
 BOARD_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
 TARGET_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
 
-# Include path
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
 #-include vendor/samsung/J120F/vendor.mk
 
 -include vendor/samsung/J120F/vendor.mk
+
+# Kernel config
+TARGET_KERNEL_SOURCE := kernel/samsung/exynos3
+TARGET_KERNEL_CONFIG := j1xlte_02_defconfig
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
