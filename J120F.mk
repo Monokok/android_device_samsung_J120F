@@ -227,3 +227,6 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/BoardConfig.mk \
     $(LOCAL_DIR)/cm.mk \
     $(LOCAL_DIR)/full_J120F.mk
+
+PRODUCT_COPY_FILES += \
+$(LOCAL_PATH)/zImage:kernel
