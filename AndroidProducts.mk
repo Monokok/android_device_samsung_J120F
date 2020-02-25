@@ -23,9 +23,9 @@ include $(call all-makefiles-under,$(LOCAL_PATH))
 endif
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/J120F.mk \
     $(LOCAL_DIR)/Android.mk \
     $(LOCAL_DIR)/AndroidProducts.mk \
     $(LOCAL_DIR)/BoardConfig.mk \
     $(LOCAL_DIR)/cm.mk \
-    $(LOCAL_DIR)/full_J120F.mk
+    $(LOCAL_DIR)/full_J120F.mk \
+    $(LOCAL_DIR)/J120F.mk

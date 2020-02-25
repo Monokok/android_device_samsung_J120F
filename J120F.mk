@@ -15,13 +15,18 @@
 #
 
 LOCAL_PATH := device/samsung/J120F
+
 DEVICE_PACKAGE_OVERLAYS += device/samsung/J120F/overlay
+
 TARGET_BOOTANIMATION_HALF_RES := true
 
 TARGET_SCREEN_WIDTH := 480
 TARGET_SCREEN_HEIGHT := 800
 
-$(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
+ifneq ($(TARGET_PREBUILT_KERNEL),)
+$(TARGET_OUT)INTERMEDIATES)/KERNEL_OBJ/usr:
+    mkdir -p $@
+endif
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/fstab.universal3475=:root/fstab.universal3475= \
@@ -48,9 +53,11 @@ PRODUCT_PACKAGES += \
     bluetooth.default \
     gps.default \
     gralloc.default
+
 # Camera
 PRODUCT_PACKAGES += \
     Gallery2
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
@@ -59,6 +66,7 @@ PRODUCT_PACKAGES += \
     static_busybox \
     make_ext4fs \
     setup_fs
+
 # telephony. Просто оставляем.# Other
 PRODUCT_PACKAGES += \
     CMSettingsProvider \
@@ -70,6 +78,7 @@ PRODUCT_PACKAGES += \
     strongswan \
     KeyUtils \
     e2fsprog
+
 # Wifi
 PRODUCT_PACKAGES += \
     wpa_supplicant \
@@ -117,7 +126,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
-PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=3
 PRODUCT_LOCALES := en_US ru_RU
@@ -204,8 +213,10 @@ PRODUCT_MAKEFILES := \
 
 $(call inherit-product-if-exists, vendor/samsung/vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-# Off ninja
-USE_NINJA=false
+
+$(call inherit-product, vendor/samsung/J120F/vendor.mk)
+# ninja
+USE_NINJA := true
 
 -include $(LOCAL_PATH)/system.prop
 
